@@ -112,11 +112,11 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/sightings/:id", (request, response) -> {
+    post("/sightings/new/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       int ranger_id = Integer.parseInt(request.params("id"));
       int animal_id = Integer.parseInt(request.queryParams("animalSelected"));
-      int location_id = Integer.parseInt(request.queryParams("location_id"));
+      int location_id = Integer.parseInt(request.queryParams("location"));
       Sighting sighting = new Sighting(animal_id, location_id, ranger_id);
       sighting.save();
       model.put("sighting", sighting);

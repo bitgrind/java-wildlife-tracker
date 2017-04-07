@@ -15,7 +15,16 @@
         <label>Location</label>
         <input type="text" name="location">
       </div>
-      <button class="btn" type="submit">Submit Report</button>
+
+      <div class="form-control">
+        <label>Your Name</label>
+        <select name="rangerSelected"
+          #foreach($ranger in $rangers)
+            <option value="$ranger.getName()">$ranger.getName()</option>
+          #end
+        </select>
+      </div>
+        <button class="btn" type="submit">Submit Report</button>
       #end
     </div>
   </form>
