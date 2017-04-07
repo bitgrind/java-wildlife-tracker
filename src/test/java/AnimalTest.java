@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Arrays;
 
 public class AnimalTest {
+
   @Rule
   public DatabaseRule database = new DatabaseRule();
 

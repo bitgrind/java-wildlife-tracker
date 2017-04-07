@@ -2,21 +2,10 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal {
-  public String name;
-  public int id;
+public class Animal extends Mammal{
 
   public Animal(String name) {
     this.name = name;
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getId() {
-    return id;
   }
 
   @Override
@@ -48,6 +37,16 @@ public class Animal {
   }
 
   public static Animal find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals WHERE id=:id;";
+      Animal animal = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Animal.class);
+      return animal;
+    }
+  }
+
+  public static Animal isEndangered(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM animals WHERE id=:id;";
       Animal animal = con.createQuery(sql)

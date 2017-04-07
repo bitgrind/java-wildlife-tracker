@@ -1,0 +1,5 @@
+.animal-nav > div {vertical-align: top;display:inline-block;position: relative;border-radius: 3px;border:1px solid #ddd;text-align: center;}
+.animal-nav i {display:block;}
+.animal-nav h3 {padding:0;margin:0;}
+.animal-nav a {padding:5px;display:block;width:100%;height: 100%;top:0;left:0;}
+.animal-nav > div a:hover {color:#adf;text-decoration: none;}

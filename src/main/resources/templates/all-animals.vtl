@@ -1,0 +1,11 @@
+<div class="col-md-6">
+  <h2>All Animals</h2>
+    #foreach ($animal in $animals)
+      <a href="/animal/$animal.getId()" class="thumbnail">
+
+        <h4>$animal.getName()<span><!--$animal.isEndangered()--></span></h4>
+        <h4>$animal.getSightings().size() Reported Sighting(s)</h4>
+        <p>Click for details</p>
+      </a>
+    #end
+</div>
