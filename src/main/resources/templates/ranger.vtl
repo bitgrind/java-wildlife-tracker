@@ -1,4 +1,4 @@
-<h1>$ranger.getName()</h1>
+<h1>Ranger: $ranger.getName()</h1>
 <h3>ID: $ranger.getId()</h3>
 
 #if($ranger.getSightings().size() == 0)
@@ -12,3 +12,8 @@
 #end
 
 #parse($ranger-sightings)
+#if($all-rangers)
+<hr>
+<h2>Other Rangers</h2>
+#parse($all-rangers)
+#end

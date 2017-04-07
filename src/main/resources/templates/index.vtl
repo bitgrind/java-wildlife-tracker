@@ -17,7 +17,10 @@
 #if($add-animal)
   #parse($add-animal)
 #end
-<hr class="col-md-12">
+#if($add-location)
+  #parse($add-location)
+#end
+<hr>
 #if($sightings)
   #parse($all-sightings)
 #end

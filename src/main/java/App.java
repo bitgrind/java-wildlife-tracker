@@ -45,7 +45,7 @@ public class App {
       model.put("animals", Animal.all());
       model.put("template", "templates/ranger.vtl");
       model.put("header", "templates/header.vtl");
-      model.put("ranger-sightings", "templates/ranger-sightings.vtl");
+      //model.put("ranger-sightings", "templates/ranger-sightings.vtl");
       model.put("all-rangers", "templates/all-rangers.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -59,16 +59,6 @@ public class App {
       model.put("all-rangers", "templates/all-rangers.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-
-    post("/ranger/new", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      String name = request.queryParams("name");
-      Ranger newRanger = new Ranger(name);
-      newRanger.save();
-      response.redirect("/");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
 
     get("/new-animal", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -112,6 +102,17 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/new-sighting", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      int ranger_id = Integer.parseInt(request.queryParams("rangerSelected"));
+      int animal_id = Integer.parseInt(request.queryParams("animalSelected"));
+      int location_id = Integer.parseInt(request.queryParams("location"));
+      Sighting sighting = new Sighting(animal_id, location_id, ranger_id);
+      sighting.save();
+      response.redirect("/ranger/ranger_id");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     post("/sightings/new/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       int ranger_id = Integer.parseInt(request.params("id"));
@@ -128,23 +129,36 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // post("/endangered_sighting", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   String rangerName = request.queryParams("rangerName");
-    //   int animalIdSelected = Integer.parseInt(request.queryParams("endangeredAnimalSelected"));
-    //   String latLong = request.queryParams("latLong");
-    //   Sighting sighting = new Sighting(animalIdSelected, latLong, rangerName);
-    //   sighting.save();
-    //   model.put("sighting", sighting);
-    //   model.put("animals", EndangeredAnimal.all());
-    //   String animal = EndangeredAnimal.find(animalIdSelected).getName();
-    //   model.put("animal", animal);
-    //   model.put("template", "templates/success.vtl");
-    //   model.put("header", "templates/header.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());\
+    get("/location", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animals", Animal.all());
+      model.put("rangers", Ranger.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("header", "templates/header.vtl");
+      model.put("add-location", "templates/add-location.vtl");
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
+    get("/location/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animals", Animal.all());
+      model.put("rangers", Ranger.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("header", "templates/header.vtl");
+      model.put("add-location", "templates/add-location.vtl");
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
+    post("/location/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String location = request.queryParams("name");
+      Location newLocation = new Location(location);
+      newLocation.save();
+      response.redirect("/");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
     get("/endangered_animal/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
