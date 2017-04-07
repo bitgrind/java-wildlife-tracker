@@ -1,12 +1,14 @@
 <hr>
-#if($sighting-reports)
-  #parse($sighting-reports)
-#end
-#if($sightings)
-  #parse($sightings)
+#if($allsightings)
+  #parse($allsightings)
 #end
 #if($animals)
   #parse($all-animals)
+#end
+<hr>
+<div>
+#if($all-locations)
+  #parse($all-locations)
 #end
 #if($add-ranger)
   #parse($add-ranger)
@@ -14,12 +16,7 @@
 #if($all-rangers)
   #parse($all-rangers)
 #end
-#if($all-sightings)
-  #parse($all-sightings)
-#end
-#if($all-locations)
-  #parse($all-locations)
-#end
+</div>
 #if($add-animal)
   #parse($add-animal)
 #end

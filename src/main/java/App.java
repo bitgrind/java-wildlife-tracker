@@ -16,14 +16,13 @@ public class App {
       model.put("animals", Animal.all());
       model.put("rangers", Ranger.all());
       model.put("locations", Location.all());
-      model.put("sightings", Sighting.all());
+      model.put("sights", Sighting.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
-      model.put("sightings-report", Sighting.all());
       model.put("template", "templates/index.vtl");
       model.put("header", "templates/header.vtl");
       model.put("all-animals", "templates/all-animals.vtl");
       model.put("all-rangers", "templates/all-rangers.vtl");
-      model.put("all-sightings", "templates/all-sightings.vtl");
+      model.put("allsightings", "templates/allsightings.vtl");
       model.put("all-locations", "templates/all-locations.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
