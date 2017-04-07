@@ -94,10 +94,7 @@ public class App {
 
     get("/sighting/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("animals", Animal.all());
-      model.put("rangers", Ranger.all());
-      model.put("locations", Location.all());
-      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("allsightings", Sighting.all());
       model.put("header", "templates/header.vtl");
       model.put("sightings", "templates/sightings.vtl");
       model.put("template", "templates/index.vtl");
@@ -107,9 +104,12 @@ public class App {
     post("/new-sighting", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       int ranger_id = Integer.parseInt(request.queryParams("ranger_id"));
+      String ranger_name = request.queryParams("ranger_name");
       int animal_id = Integer.parseInt(request.queryParams("animal_id"));
+      String animal_name = request.queryParams("animal_name");
       int location_id = Integer.parseInt(request.queryParams("location_id"));
-      Sighting sighting = new Sighting(animal_id, location_id, ranger_id);
+      String location_name = request.queryParams("location_name");
+      Sighting sighting = new Sighting(animal_id, animal_name, location_id, location_name, ranger_id, ranger_name);
       sighting.save();
       response.redirect("/sighting/new");
       model.put("template", "templates/index.vtl");
@@ -118,10 +118,13 @@ public class App {
 
     post("/sightings/new/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      int ranger_id = Integer.parseInt(request.params("id"));
-      int animal_id = Integer.parseInt(request.queryParams("animalSelected"));
-      int location_id = Integer.parseInt(request.queryParams("location"));
-      Sighting sighting = new Sighting(animal_id, location_id, ranger_id);
+      int ranger_id = Integer.parseInt(request.queryParams("ranger_id"));
+      String ranger_name = request.queryParams("ranger_name");
+      int animal_id = Integer.parseInt(request.queryParams("animal_id"));
+      String animal_name = request.queryParams("animal_name");
+      int location_id = Integer.parseInt(request.queryParams("location_id"));
+      String location_name = request.queryParams("location_name");
+      Sighting sighting = new Sighting(animal_id, animal_name, location_id, location_name, ranger_id, ranger_name);
       sighting.save();
       model.put("sighting", sighting);
       model.put("animals", Animal.all());

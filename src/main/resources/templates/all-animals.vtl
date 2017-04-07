@@ -1,11 +1,19 @@
 <div class="col-md-6">
   <h2>All Animals</h2>
-    #foreach ($animal in $animals)
-      <a href="/animal/$animal.getId()" class="thumbnail">
+  #foreach($EndangeredAnimal in $endangeredAnimals)
+  <a class="endangered" href="/endangeredAnimal/$EndangeredAnimal.getId()" class="thumbnail">
 
-        <h4>$animal.getName()<span><!--$animal.isEndangered()--></span></h4>
-        <h4>$animal.getSightings().size() Reported Sighting(s)</h4>
-        <p>Click for details</p>
-      </a>
-    #end
+    <h4>Endangered: $EndangeredAnimal.getName()<span><!--$animal.isEndangered()--></span></h4>
+    <h4>$EndangeredAnimal.getSightings().size() Reported Sighting(s)</h4>
+    <p>Click for details</p>
+  </a>
+  #end
+  #foreach ($animal in $animals)
+    <a class="not-endangered" href="/animal/$animal.getId()" class="thumbnail">
+
+      <h4>$animal.getName()<span><!--$animal.isEndangered()--></span></h4>
+      <h4>$animal.getSightings().size() Reported Sighting(s)</h4>
+      <p>Click for details</p>
+    </a>
+  #end
 </div>

@@ -1,9 +1,15 @@
 <hr>
+#if($sightings)
+  #parse($sightings)
+#end
 #if($allsightings)
   #parse($allsightings)
 #end
 #if($animals)
   #parse($all-animals)
+#end
+#if($endangered_Animals)
+  #parse($endangered_Animals)
 #end
 <hr>
 <div>
