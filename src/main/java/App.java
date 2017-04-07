@@ -94,9 +94,13 @@ public class App {
 
     get("/sighting/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("allsightings", Sighting.all());
+      model.put("sights", Sighting.all());
+      model.put("animals", Animal.all());
+      model.put("rangers", Ranger.all());
+      model.put("locations", Location.all());
+      model.put("allsightings", "templates/allsightings.vtl");
       model.put("header", "templates/header.vtl");
-      model.put("sightings", "templates/sightings.vtl");
+      model.put("add-sighting", "templates/add-sighting.vtl");
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -111,8 +115,7 @@ public class App {
       String location_name = request.queryParams("location_name");
       Sighting sighting = new Sighting(animal_id, animal_name, location_id, location_name, ranger_id, ranger_name);
       sighting.save();
-      response.redirect("/sighting/new");
-      model.put("template", "templates/index.vtl");
+      response.redirect("/sighting/new/");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

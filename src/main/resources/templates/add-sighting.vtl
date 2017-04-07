@@ -3,7 +3,6 @@
   <form action="/new-sighting" method="post">
     <div class="input-group">
       <div class="form-control">
-        #if($animals.size() >= 0)
           <label>Select Animal</label>
           <select name="animal_id">
             #foreach($animal in $animals)
@@ -32,7 +31,6 @@
         <input type="hidden" value="$ranger.getName()">
       </div>
         <button class="btn" type="submit">Submit Report</button>
-      #end
     </div>
   </form>
 </div>

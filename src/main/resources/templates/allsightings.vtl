@@ -2,7 +2,7 @@
   <h2>Sightings:</h2>
   #foreach ($sight in $sights)
     <a href="/location/$sight.getLocationId()" class="thumbnail">
-      <h3>Animal Name: $sight.getAnimalId()<span><!--$animal.isEndangered()--></span></h3>
+      <h3>Animal Name: $animal.getName()<span><!--$animal.isEndangered()--></span></h3>
       <h4>Animals Sighted in this Location:</h4>
     </a>
   #end
