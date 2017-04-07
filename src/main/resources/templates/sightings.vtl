@@ -1,6 +1,6 @@
 <div class="col-md-6">
   <h3> Report Animal Sighting </h3>
-  <form action="/new-sighting" method="post">
+  <form action="/sighting/new" method="post">
     <div class="input-group">
       <div class="form-control">
         #if($animals.size() >= 0)
@@ -13,10 +13,6 @@
       </div>
       <div class="form-control">
         <label>Location</label>
-        <input type="text" name="location">
-      </div>
-      <div class="form-control">
-        <label>Location</label>
         <select name="locationSelected">
           #foreach($location in $locations)
             <option value="$location.getId()">$location.getName()</option>
@@ -25,7 +21,7 @@
       </div>
 
       <div class="form-control">
-        <label>Your Name</label>
+        <label>Ranger</label>
         <select name="rangerSelected">
           #foreach($ranger in $rangers)
             <option value="$ranger.getId()">$ranger.getName()</option>
