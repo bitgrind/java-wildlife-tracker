@@ -15,12 +15,14 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("animals", Animal.all());
       model.put("rangers", Ranger.all());
+      model.put("sightings", Sighting.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings-report", Sighting.all());
       model.put("template", "templates/index.vtl");
       model.put("header", "templates/header.vtl");
       model.put("all-animals", "templates/all-animals.vtl");
       model.put("all-rangers", "templates/all-rangers.vtl");
+      model.put("all-sightings", "templates/all-sightings.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -39,18 +41,22 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Ranger ranger = Ranger.find(Integer.parseInt(request.params("id")));
       model.put("ranger", ranger);
+      model.put("rangers", Ranger.all());
       model.put("animals", Animal.all());
       model.put("template", "templates/ranger.vtl");
       model.put("header", "templates/header.vtl");
       model.put("sightings", "templates/sightings.vtl");
+      model.put("all-rangers", "templates/all-rangers.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
     get("/new-ranger", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("rangers", Ranger.all());
       model.put("template", "templates/index.vtl");
       model.put("add-ranger", "templates/add-ranger.vtl");
       model.put("header", "templates/header.vtl");
+      model.put("all-rangers", "templates/all-rangers.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -106,12 +112,12 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/sightings", (request, response) -> {
+    post("/sightings/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      String rangerName = request.queryParams("rangerName");
+      int ranger_id = Integer.parseInt(request.params("id"));
       int animalIdSelected = Integer.parseInt(request.queryParams("animalSelected"));
-      String latLong = request.queryParams("latLong");
-      Sighting sighting = new Sighting(animalIdSelected, latLong, rangerName);
+      String latLong = request.queryParams("location");
+      Sighting sighting = new Sighting(animalIdSelected, latLong, ranger_id);
       sighting.save();
       model.put("sighting", sighting);
       model.put("animals", Animal.all());

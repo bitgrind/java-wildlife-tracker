@@ -8,14 +8,14 @@ import java.text.SimpleDateFormat;
 public class Sighting {
   private int animal_id;
   private String location;
-  private String ranger_name;
+  private int ranger_id;
   private int id;
   private String date_sighted;
 
-  public Sighting(int animal_id, String location, String ranger_name) {
+  public Sighting(int animal_id, String location, int ranger_id) {
     this.animal_id = animal_id;
     this.location = location;
-    this.ranger_name = ranger_name;
+    this.ranger_id = ranger_id;
     this.id = id;
     Date makeDate = new Date();
     this.date_sighted = new SimpleDateFormat("MM-dd-yyyy").format(makeDate);
@@ -33,8 +33,8 @@ public class Sighting {
     return location;
   }
 
-  public String getRangerName() {
-    return ranger_name;
+  public int getRangerId() {
+    return ranger_id;
   }
 
   @Override
@@ -43,18 +43,18 @@ public class Sighting {
       return false;
     } else {
       Sighting newSighting = (Sighting) otherSighting;
-      return this.getAnimalId() == (newSighting.getAnimalId()) && this.getLocation().equals(newSighting.getLocation()) && this.getRangerName().equals(newSighting.getRangerName());
+      return this.getAnimalId() == (newSighting.getAnimalId()) && this.getLocation().equals(newSighting.getLocation());
     }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (animal_id, location, ranger_name, date_sighted) VALUES (:animal_id, :location, :ranger_name, :date_sighted);";
+      String sql = "INSERT INTO sightings (animal_id, location, ranger_id, date_sighted) VALUES (:animal_id, :location, :ranger_id, :date_sighted);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("animal_id", this.animal_id)
         .addParameter("location", this.location)
-        .addParameter("ranger_name", this.ranger_name)
-        .addParameter("date_sighted", this.ranger_name)
+        .addParameter("ranger_name", this.ranger_id)
+        .addParameter("date_sighted", this.date_sighted)
         .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();

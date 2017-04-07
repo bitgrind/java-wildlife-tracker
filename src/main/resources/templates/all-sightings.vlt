@@ -1,0 +1,10 @@
+<div class="col-md-4">
+  <h2>Sightings:</h2>
+    #foreach ($sighting in $sightings)
+      <a href="/ranger/$ranger.getId()" class="thumbnail">
+
+        <h4>$sighting.getName()<span><!--$ranger.isEndangered()--></span></h4>
+        <p>Click for details</p>
+      </a>
+    #end
+</div>
