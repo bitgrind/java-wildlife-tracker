@@ -39,8 +39,10 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Ranger ranger = Ranger.find(Integer.parseInt(request.params("id")));
       model.put("ranger", ranger);
+      model.put("animals", Animal.all());
       model.put("template", "templates/ranger.vtl");
       model.put("header", "templates/header.vtl");
+      model.put("sightings", "templates/sightings.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
