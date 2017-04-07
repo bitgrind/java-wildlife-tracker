@@ -3,9 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Location extends Mammal {
-  public Location(){
-
-    
+  public Location(String name){
+    this.name = name;
   }
-
+  
 }

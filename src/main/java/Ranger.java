@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ranger extends Mammal {
+  public static final String EMPLOYER = "Wild Life Reserve";
 
   public Ranger(String name) {
     this.name = name;
@@ -10,9 +11,10 @@ public class Ranger extends Mammal {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO rangers (name) VALUES (:name);";
+      String sql = "INSERT INTO rangers (name, employer) VALUES (:name, :employer);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
+        .addParameter("employer", this.EMPLOYER)
         .executeUpdate()
         .getKey();
     }

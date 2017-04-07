@@ -7,14 +7,14 @@ import java.text.SimpleDateFormat;
 
 public class Sighting {
   private int animal_id;
-  private String location;
+  private int location_id;
   private int ranger_id;
   private int id;
   private String date_sighted;
 
-  public Sighting(int animal_id, String location, int ranger_id) {
+  public Sighting(int animal_id, int location_id, int ranger_id) {
     this.animal_id = animal_id;
-    this.location = location;
+    this.location_id = location_id;
     this.ranger_id = ranger_id;
     this.id = id;
     Date makeDate = new Date();
@@ -29,8 +29,8 @@ public class Sighting {
     return animal_id;
   }
 
-  public String getLocation() {
-    return location;
+  public int getLocation() {
+    return location_id;
   }
 
   public int getRangerId() {
@@ -43,16 +43,16 @@ public class Sighting {
       return false;
     } else {
       Sighting newSighting = (Sighting) otherSighting;
-      return this.getAnimalId() == (newSighting.getAnimalId()) && this.getLocation().equals(newSighting.getLocation());
+      return true;
     }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (animal_id, location, ranger_id, date_sighted) VALUES (:animal_id, :location, :ranger_id, :date_sighted);";
+      String sql = "INSERT INTO sightings (animal_id, location_id, ranger_id, date_sighted) VALUES (:animal_id, :location_id, :ranger_id, :date_sighted);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("animal_id", this.animal_id)
-        .addParameter("location", this.location)
+        .addParameter("location_id", this.location_id)
         .addParameter("ranger_name", this.ranger_id)
         .addParameter("date_sighted", this.date_sighted)
         .throwOnMappingFailure(false)
@@ -65,7 +65,6 @@ public class Sighting {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM sightings;";
       return con.createQuery(sql)
-        .throwOnMappingFailure(false)
         .executeAndFetch(Sighting.class);
     }
   }
