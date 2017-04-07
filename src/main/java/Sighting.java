@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.time.*;
 import java.text.SimpleDateFormat;
 
 public class Sighting {
@@ -16,7 +17,6 @@ public class Sighting {
     this.animal_id = animal_id;
     this.location_id = location_id;
     this.ranger_id = ranger_id;
-    this.id = id;
     Date makeDate = new Date();
     this.date_sighted = new SimpleDateFormat("MM-dd-yyyy").format(makeDate);
   }
@@ -53,9 +53,8 @@ public class Sighting {
       this.id = (int) con.createQuery(sql, true)
         .addParameter("animal_id", this.animal_id)
         .addParameter("location_id", this.location_id)
-        .addParameter("ranger_name", this.ranger_id)
+        .addParameter("ranger_id", this.ranger_id)
         .addParameter("date_sighted", this.date_sighted)
-        .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();
     }

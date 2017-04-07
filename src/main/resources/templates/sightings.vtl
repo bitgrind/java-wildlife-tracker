@@ -1,11 +1,11 @@
 <div class="col-md-6">
   <h3> Report Animal Sighting </h3>
-  <form action="/sighting/new" method="post">
+  <form action="/new-sighting" method="post">
     <div class="input-group">
       <div class="form-control">
         #if($animals.size() >= 0)
           <label>Select Animal</label>
-          <select name="animalSelected">
+          <select name="animal_id">
             #foreach($animal in $animals)
               <option value="$animal.getId()">$animal.getName()</option>
             #end
@@ -13,7 +13,7 @@
       </div>
       <div class="form-control">
         <label>Location</label>
-        <select name="locationSelected">
+        <select name="location_id">
           #foreach($location in $locations)
             <option value="$location.getId()">$location.getName()</option>
           #end
@@ -22,7 +22,7 @@
 
       <div class="form-control">
         <label>Ranger</label>
-        <select name="rangerSelected">
+        <select name="ranger_id">
           #foreach($ranger in $rangers)
             <option value="$ranger.getId()">$ranger.getName()</option>
           #end

@@ -14,6 +14,9 @@
 #if($all-rangers)
   #parse($all-rangers)
 #end
+#if($all-sightings)
+  #parse($all-sightings)
+#end
 #if($all-locations)
   #parse($all-locations)
 #end
@@ -22,8 +25,4 @@
 #end
 #if($add-location)
   #parse($add-location)
-#end
-<hr>
-#if($sightings)
-  #parse($all-sightings)
 #end

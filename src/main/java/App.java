@@ -16,7 +16,7 @@ public class App {
       model.put("animals", Animal.all());
       model.put("rangers", Ranger.all());
       model.put("locations", Location.all());
-      //model.put("sightings", Sighting.all());
+      model.put("sightings", Sighting.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings-report", Sighting.all());
       model.put("template", "templates/index.vtl");
@@ -105,14 +105,15 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/sighting/new", (request, response) -> {
+    post("/new-sighting", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      int ranger_id = Integer.parseInt(request.queryParams("rangerSelected"));
-      int animal_id = Integer.parseInt(request.queryParams("animalSelected"));
-      int location_id = Integer.parseInt(request.queryParams("location"));
+      int ranger_id = Integer.parseInt(request.queryParams("ranger_id"));
+      int animal_id = Integer.parseInt(request.queryParams("animal_id"));
+      int location_id = Integer.parseInt(request.queryParams("location_id"));
       Sighting sighting = new Sighting(animal_id, location_id, ranger_id);
       sighting.save();
-      response.redirect("/");
+      response.redirect("/sighting/new");
+      model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
