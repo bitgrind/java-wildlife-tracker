@@ -6,6 +6,8 @@ An app for the forest service to track animals for an environmental impact study
 
 The Forest Service is considering a proposal from a timber company to clearcut a nearby forest of Douglas Fir. Before this proposal may be approved, they must complete an environmental impact study. This application was developed to allow Rangers to track wildlife sightings in the area.
 
+This is designed to be easy to use and intuitive. To help develop the Ranger team as well as help track current levels of wild life and status of wildlife. 
+
 ### Setup
 
 To create the necessary databases, launch postgres, then psql, and run the following commands:
@@ -15,8 +17,12 @@ To create the necessary databases, launch postgres, then psql, and run the follo
 * `CREATE TABLE animals (id serial PRIMARY KEY, name varchar);`
 * `CREATE TABLE endangered_animals (id serial PRIMARY KEY, name varchar, health varchar, age varchar);`
 * `CREATE TABLE sightings (id serial PRIMARY KEY, animal_id int, location varchar, ranger_name varchar);`
-* `CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;`
+* `CREATE TABLE rangers (id serial PRIMARY KEY, name varchar);`
+
+
 
 ### License
+
+Developed and styled by Keith Stedman, feel free to fork and develop further!
 
 Copyright (c) 2017 **_MIT License_**
