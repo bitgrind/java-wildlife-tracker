@@ -10,7 +10,6 @@
   #end
   #foreach ($animal in $animals)
     <a class="not-endangered" href="/animal/$animal.getId()" class="thumbnail">
-
       <h4>$animal.getName()<span><!--$animal.isEndangered()--></span></h4>
       <h4>$animal.getSightings().size() Reported Sighting(s)</h4>
       <p>Click for details</p>
