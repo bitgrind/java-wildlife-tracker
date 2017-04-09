@@ -1,0 +1,2 @@
+I'm having issues with my routing, getting 500 errors with the url's /ranger/new vs /ranger/:id, when I change to /ranger-new, no longer gets conflicts.
+

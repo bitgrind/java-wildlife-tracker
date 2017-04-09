@@ -12,6 +12,11 @@ body {margin-top:200px;}
 
 main {min-height:500px;}
 
+/* Page Styles */
+#home
+
+#sightings > div .control-form {}
+
 .container {background-color:rgba(255,255,255,.9);position: relative;z-index: 10;box-shadow: 0px 1px 1px #000;}
 
 .animal-nav > div {vertical-align: top;display:inline-block;position: relative;border-radius: 3px;border:1px solid #ddd;text-align: center;}
@@ -22,3 +27,5 @@ main {min-height:500px;}
 
 .endangered {padding:5px;margin-bottom:3px;border:3px solid #fd5;display: block;}
 .not-endangered {padding:5px;margin-bottom:3px;border:3px solid #7f5;display: block;}
+
+.control-form {margin-bottom:10px;}

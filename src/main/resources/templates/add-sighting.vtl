@@ -1,6 +1,6 @@
 <div class="col-md-6">
   <h3> Report Animal Sighting </h3>
-  <form action="/new-sighting" method="post">
+  <form action="/sighting-new" method="post">
     <div class="input-group">
       <div class="form-control">
           <label>Select Animal</label>
@@ -9,6 +9,11 @@
               <option value="$animal.getId()">$animal.getName()</option>
             #end
           </select>
+          <div>
+            #if($add-animal)
+              #parse($add-animal)
+            #end
+          </div>
       </div>
       <div class="form-control">
         <label>Location</label>
