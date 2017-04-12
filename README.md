@@ -17,7 +17,7 @@ To create the necessary databases, launch postgres, then psql, and run the follo
 * `CREATE TABLE animals (id serial PRIMARY KEY, name varchar, isEndangered boolean, );`
 * `CREATE TABLE endangered_animals (id serial PRIMARY KEY, name varchar, health varchar, age varchar);`
 * `CREATE TABLE sightings (id serial PRIMARY KEY, animal_id int, location varchar, ranger_name varchar);`
-* `CREATE TABLE rangers (id serial PRIMARY KEY, name varchar);`
+* `CREATE TABLE rangers (id serial PRIMARY KEY, name varchar, employer varchar);`
 * `CREATE TABLE locations (id serial PRIMARY KEY, name varchar);`
 * `CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;`
 
