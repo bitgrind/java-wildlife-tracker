@@ -1,12 +1,12 @@
 <h1>Ranger: $ranger.getName()</h1>
-<h3>ID: $ranger.getId()</h3>
+<h3>Badge Number: $ranger.getId()</h3>
 
 #if($ranger.getSightings().size() == 0)
   <h3>No Sightings Reports thus far.</h3>
 #else
   #foreach($sighting in $ranger.getSightings())
-    Location: $sighting.getLocation()
-    Reported by: $sighting.getRangerName()
+    Location: $sighting.getLocationId()
+    Reported by: $sighting.getRangerId()
     ID: >$sighting.getId()
   #end
 #end

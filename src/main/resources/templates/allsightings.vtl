@@ -1,8 +1,9 @@
-<div class="col-md-4">
+<div class="col-md-6">
   <h2>Sightings:</h2>
   #foreach ($sight in $sights)
-    <a href="/location/$sight.getLocationId()" class="thumbnail">
-      <h3>Animal Name: $animal.getName()<span><!--$animal.isEndangered()--></span></h3>
+    <a href="/sightings/$sight.getLocationId()" class="thumbnail">
+      <h3>Sighted: $sight.getAnimalName()</h3>
+      <h3>By: $sight.getRangerName()</h3>
       <h4>Animals Sighted in this Location:</h4>
     </a>
   #end
