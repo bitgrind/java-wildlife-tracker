@@ -172,7 +172,8 @@ CREATE TABLE sightings (
     id integer NOT NULL,
     animal_name character varying,
     location_name character varying,
-    ranger_name character varying
+    ranger_name character varying,
+    date_sighted character varying
 );
 
 
@@ -298,7 +299,7 @@ SELECT pg_catalog.setval('rangers_id_seq', 1, false);
 -- Data for Name: sightings; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY sightings (id, animal_name, location_name, ranger_name) FROM stdin;
+COPY sightings (id, animal_name, location_name, ranger_name, date_sighted) FROM stdin;
 \.
 
 

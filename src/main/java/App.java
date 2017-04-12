@@ -120,7 +120,7 @@ public class App {
 
     get("/sightings/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      //model.put("sights", Sighting.all());
+      model.put("sights", Sighting.all());
       model.put("animals", Animal.all());
       model.put("rangers", Ranger.all());
       model.put("locations", Location.all());
