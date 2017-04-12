@@ -74,15 +74,4 @@ public class Animal extends Mammal{
         .executeUpdate();
     }
   }
-
-  public List<Sighting> getSightings() {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM sightings WHERE animal_id=:id;";
-        List<Sighting> sightings = con.createQuery(sql)
-          .addParameter("id", id)
-          .executeAndFetch(Sighting.class);
-      return sightings;
-    }
-  }
-
 }

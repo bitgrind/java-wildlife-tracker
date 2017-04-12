@@ -34,5 +34,4 @@ public class Location extends Mammal {
       return location;
     }
   }
-
 }

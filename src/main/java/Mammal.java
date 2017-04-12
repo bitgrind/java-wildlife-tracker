@@ -13,5 +13,4 @@ public abstract class Mammal{
   public int getId() {
     return id;
   }
-
 }
