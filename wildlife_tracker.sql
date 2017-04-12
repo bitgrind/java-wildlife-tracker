@@ -98,22 +98,22 @@ ALTER SEQUENCE endangered_animals_id_seq OWNED BY endangered_animals.id;
 
 
 --
--- Name: location; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+-- Name: locations; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
-CREATE TABLE location (
+CREATE TABLE locations (
     id integer NOT NULL,
     name character varying
 );
 
 
-ALTER TABLE location OWNER TO "Guest";
+ALTER TABLE locations OWNER TO "Guest";
 
 --
--- Name: location_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+-- Name: locations_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
 --
 
-CREATE SEQUENCE location_id_seq
+CREATE SEQUENCE locations_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -121,13 +121,13 @@ CREATE SEQUENCE location_id_seq
     CACHE 1;
 
 
-ALTER TABLE location_id_seq OWNER TO "Guest";
+ALTER TABLE locations_id_seq OWNER TO "Guest";
 
 --
--- Name: location_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+-- Name: locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
 --
 
-ALTER SEQUENCE location_id_seq OWNED BY location.id;
+ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
 
 
 --
@@ -172,8 +172,7 @@ CREATE TABLE sightings (
     id integer NOT NULL,
     animal_name character varying,
     location_name character varying,
-    ranger_name character varying,
-    date_sighted character varying
+    ranger_name character varying
 );
 
 
@@ -218,7 +217,7 @@ ALTER TABLE ONLY endangered_animals ALTER COLUMN id SET DEFAULT nextval('endange
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
-ALTER TABLE ONLY location ALTER COLUMN id SET DEFAULT nextval('location_id_seq'::regclass);
+ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
 
 
 --
@@ -240,11 +239,6 @@ ALTER TABLE ONLY sightings ALTER COLUMN id SET DEFAULT nextval('sightings_id_seq
 --
 
 COPY animals (id, name) FROM stdin;
-1	Bear
-2	Bear
-3	bear
-4	Deer
-5	Wolf
 \.
 
 
@@ -252,7 +246,7 @@ COPY animals (id, name) FROM stdin;
 -- Name: animals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('animals_id_seq', 5, true);
+SELECT pg_catalog.setval('animals_id_seq', 1, false);
 
 
 --
@@ -260,7 +254,6 @@ SELECT pg_catalog.setval('animals_id_seq', 5, true);
 --
 
 COPY endangered_animals (id, name, health, age) FROM stdin;
-1	Wolf	Ill	Newborn
 \.
 
 
@@ -268,25 +261,22 @@ COPY endangered_animals (id, name, health, age) FROM stdin;
 -- Name: endangered_animals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('endangered_animals_id_seq', 1, true);
+SELECT pg_catalog.setval('endangered_animals_id_seq', 1, false);
 
 
 --
--- Data for Name: location; Type: TABLE DATA; Schema: public; Owner: Guest
+-- Data for Name: locations; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY location (id, name) FROM stdin;
-1	
-2	River
-3	Highlands
+COPY locations (id, name) FROM stdin;
 \.
 
 
 --
--- Name: location_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+-- Name: locations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('location_id_seq', 3, true);
+SELECT pg_catalog.setval('locations_id_seq', 1, false);
 
 
 --
@@ -294,10 +284,6 @@ SELECT pg_catalog.setval('location_id_seq', 3, true);
 --
 
 COPY rangers (id, name, employer) FROM stdin;
-1	dave	Wild Life Reserve
-2	dave	Wild Life Reserve
-3	dave	Wild Life Reserve
-4	dave	Wild Life Reserve
 \.
 
 
@@ -305,18 +291,14 @@ COPY rangers (id, name, employer) FROM stdin;
 -- Name: rangers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('rangers_id_seq', 4, true);
+SELECT pg_catalog.setval('rangers_id_seq', 1, false);
 
 
 --
 -- Data for Name: sightings; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY sightings (id, animal_name, location_name, ranger_name, date_sighted) FROM stdin;
-1	1	2	1	04-12-2017
-2	1	3	1	04-12-2017
-3	Bear	Highlands	dave	04-12-2017
-4	Wolf	River	dave	04-12-2017
+COPY sightings (id, animal_name, location_name, ranger_name) FROM stdin;
 \.
 
 
@@ -324,7 +306,7 @@ COPY sightings (id, animal_name, location_name, ranger_name, date_sighted) FROM 
 -- Name: sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('sightings_id_seq', 4, true);
+SELECT pg_catalog.setval('sightings_id_seq', 1, false);
 
 
 --
@@ -344,11 +326,11 @@ ALTER TABLE ONLY endangered_animals
 
 
 --
--- Name: location_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+-- Name: locations_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
-ALTER TABLE ONLY location
-    ADD CONSTRAINT location_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY locations
+    ADD CONSTRAINT locations_pkey PRIMARY KEY (id);
 
 
 --

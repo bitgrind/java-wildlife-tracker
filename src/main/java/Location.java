@@ -9,7 +9,7 @@ public class Location extends Mammal {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO location (name) VALUES (:name);";
+      String sql = "INSERT INTO locations (name) VALUES (:name);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .executeUpdate()
@@ -19,7 +19,7 @@ public class Location extends Mammal {
 
   public static List<Location> all() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM location;";
+      String sql = "SELECT * FROM locations;";
       return con.createQuery(sql)
         .executeAndFetch(Location.class);
     }
@@ -27,7 +27,7 @@ public class Location extends Mammal {
 
   public static Location find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM location WHERE id=:id;";
+      String sql = "SELECT * FROM locations WHERE id=:id;";
       Location location = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(Location.class);
